@@ -1,13 +1,15 @@
-package com.jolles.spring.security.firstapp;
+package com.jolles.spring.security.firstapp.auth;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+@Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
     @Override
@@ -15,7 +17,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         String userName = authentication.getName();
         String pass = authentication.getCredentials().toString();
 
-        if ("tom".equals(userName) && "cruise".equals(pass)) {
+        if ("Tom".equals(userName) && "Cruise".equals(pass)) {
             return new UsernamePasswordAuthenticationToken(userName, pass, Arrays.asList());
         } else {
             throw new BadCredentialsException("Invalid Username or Password");
